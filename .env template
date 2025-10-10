@@ -1,3 +1,5 @@
 DB_PASSWORD=617182Fer
 DB_USER=postgres
 DB_NAME=cultura-db
+DB_HOST=localhost
+DB_PORT=5434

@@ -1,6 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PersonaModule } from './persona/persona.module';
+import { SexoModule } from './sexo/sexo.module';
+import { ActividadModule } from './actividad/actividad.module';
+import { ConvocatoriaModule } from './convocatoria/convocatoria.module';
+import { TipoModule } from './tipo_convocatoria/tipo/tipo.module';
+import { InscripcionesModule } from './inscripciones/inscripciones.module';
 
 @Module({
   imports: [
@@ -19,6 +25,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       }),
       inject: [ConfigService],
     }),
+    PersonaModule,
+    SexoModule,
+    ActividadModule,
+    ConvocatoriaModule,
+    TipoModule,
+    InscripcionesModule,
     // Other modules can be imported here
   ],
   controllers: [],
