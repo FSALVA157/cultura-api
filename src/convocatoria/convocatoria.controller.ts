@@ -11,11 +11,13 @@ import {
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { ConvocatoriaService } from './convocatoria.service';
 import { CreateConvocatoriaDto } from './dto/create-convocatoria.dto';
 import { UpdateConvocatoriaDto } from './dto/update-convocatoria.dto';
 import { Convocatoria } from './entities/convocatoria.entity';
 
+@ApiTags('convocatoria')
 @Controller('convocatoria')
 export class ConvocatoriaController {
   constructor(private readonly convocatoriaService: ConvocatoriaService) {}

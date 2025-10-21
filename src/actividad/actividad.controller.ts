@@ -10,11 +10,13 @@ import {
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { ActividadService } from './actividad.service';
 import { CreateActividadDto } from './dto/create-actividad.dto';
 import { UpdateActividadDto } from './dto/update-actividad.dto';
 import { Actividad } from './entities/actividad.entity';
 
+@ApiTags('actividad')
 @Controller('actividad')
 export class ActividadController {
   constructor(private readonly actividadService: ActividadService) {}

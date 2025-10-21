@@ -10,11 +10,13 @@ import {
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { SexoService } from './sexo.service';
 import { CreateSexoDto } from './dto/create-sexo.dto';
 import { UpdateSexoDto } from './dto/update-sexo.dto';
 import { Sexo } from './entities/sexo.entity';
 
+@ApiTags('sexo')
 @Controller('sexo')
 export class SexoController {
   constructor(private readonly sexoService: SexoService) {}

@@ -11,10 +11,12 @@ import {
   ValidationPipe,
   ParseIntPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { TipoService } from './tipo.service';
 import { CreateTipoDto } from './dto/create-tipo.dto';
 import { UpdateTipoDto } from './dto/update-tipo.dto';
 
+@ApiTags('tipo')
 @Controller('tipo')
 export class TipoController {
   constructor(private readonly tipoService: TipoService) {}

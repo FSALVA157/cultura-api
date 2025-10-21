@@ -10,11 +10,13 @@ import {
   HttpStatus,
   HttpCode,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { PersonaService } from './persona.service';
 import { CreatePersonaDto } from './dto/create-persona.dto';
 import { UpdatePersonaDto } from './dto/update-persona.dto';
 import { Persona } from './entities/persona.entity';
 
+@ApiTags('persona')
 @Controller('persona')
 export class PersonaController {
   constructor(private readonly personaService: PersonaService) {}
