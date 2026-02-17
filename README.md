@@ -1,99 +1,451 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# API Cultura 🎭
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API REST desarrollada con NestJS para la gestión de actividades culturales, convocatorias e inscripciones.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+[![NestJS](https://img.shields.io/badge/NestJS-10.0-red?logo=nestjs)](https://nestjs.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-8.16-blue?logo=postgresql)](https://www.postgresql.org/)
+[![TypeORM](https://img.shields.io/badge/TypeORM-0.3-orange)](https://typeorm.io/)
 
-## Description
+## Descripción
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Sistema backend para la gestión integral de actividades culturales que permite:
 
-## Project setup
+- **Gestión de Personas**: Registro de personas físicas y jurídicas con información completa
+- **Convocatorias Culturales**: Creación y administración de convocatorias con descripción, reglamento y ubicación
+- **Sistema de Inscripciones**: Control de inscripciones con estados (activo, pendiente, inactivo)
+- **Catálogos**: Gestión de actividades, tipos de convocatorias y datos demográficos
+- **Documentación Interactiva**: API completamente documentada con Swagger/OpenAPI
+- **Validación de Datos**: Validación automática de DTOs con class-validator
+- **Seguridad**: Contraseñas encriptadas con bcrypt
+
+## Características Principales
+
+- ✅ API RESTful con arquitectura modular
+- ✅ Documentación automática con Swagger
+- ✅ Validación de datos con class-validator
+- ✅ ORM con TypeORM para PostgreSQL
+- ✅ Sistema de seeders para datos iniciales
+- ✅ CORS habilitado
+- ✅ Variables de entorno con @nestjs/config
+- ✅ Timestamps automáticos (created_at, updated_at)
+- ✅ Relaciones entre entidades (ManyToOne)
+- ✅ Tipos enumerados para estados y categorías
+
+## Tecnologías Utilizadas
+
+- **Framework**: NestJS 10.x
+- **Lenguaje**: TypeScript 5.9
+- **Base de Datos**: PostgreSQL
+- **ORM**: TypeORM 0.3
+- **Documentación**: Swagger/OpenAPI
+- **Validación**: class-validator, class-transformer
+- **Seguridad**: bcrypt para hashing de passwords
+
+## Requisitos Previos
+
+- Node.js >= 18.x
+- npm >= 9.x
+- PostgreSQL >= 12.x
+
+## Instalación
+
+1. **Clonar el repositorio**
 
 ```bash
-$ npm install
+git clone <repository-url>
+cd cultura-api
 ```
 
-## Compile and run the project
+2. **Instalar dependencias**
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+3. **Configurar variables de entorno**
+
+Crear un archivo `.env` en la raíz del proyecto basándose en `.env template`:
+
+```env
+DB_HOST=localhost
+DB_PORT=5434
+DB_NAME=cultura-db
+DB_USER=postgres
+DB_PASSWORD=tu_password
+PORT=3000
+NODE_ENV=development
+```
+
+4. **Crear la base de datos**
 
 ```bash
-# unit tests
-$ npm run test
+# Conectarse a PostgreSQL
+psql -U postgres
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# Crear la base de datos
+CREATE DATABASE "cultura-db";
 ```
+
+5. **Ejecutar migraciones y seeders**
+
+```bash
+# Las tablas se crean automáticamente con synchronize en desarrollo
+npm run start:dev
+
+# Opcionalmente, ejecutar seeders para datos iniciales
+npm run seed
+```
+
+## Variables de Entorno
+
+| Variable | Descripción | Valor por defecto |
+|----------|-------------|-------------------|
+| `DB_HOST` | Host de PostgreSQL | localhost |
+| `DB_PORT` | Puerto de PostgreSQL | 5434 |
+| `DB_NAME` | Nombre de la base de datos | cultura-db |
+| `DB_USER` | Usuario de PostgreSQL | postgres |
+| `DB_PASSWORD` | Contraseña de PostgreSQL | - |
+| `PORT` | Puerto del servidor | 3000 |
+| `NODE_ENV` | Entorno de ejecución | development |
+
+## Scripts Disponibles
+
+### Desarrollo
+
+```bash
+# Modo desarrollo con hot-reload
+npm run start:dev
+
+# Modo desarrollo normal
+npm run start
+
+# Modo debug
+npm run start:debug
+```
+
+### Producción
+
+```bash
+# Compilar para producción
+npm run build
+
+# Ejecutar en producción
+npm run start:prod
+
+# Ejecutar seeder en producción
+npm run seed:prod
+```
+
+### Base de Datos
+
+```bash
+# Ejecutar seeders en desarrollo
+npm run seed
+
+# Ejecutar seeders en producción
+npm run seed:prod
+```
+
+### Testing
+
+```bash
+# Tests unitarios
+npm run test
+
+# Tests en modo watch
+npm run test:watch
+
+# Tests e2e
+npm run test:e2e
+
+# Cobertura de tests
+npm run test:cov
+```
+
+### Calidad de Código
+
+```bash
+# Ejecutar linter
+npm run lint
+
+# Formatear código
+npm run format
+```
+
+## Estructura del Proyecto
+
+```
+cultura-api/
+├── src/
+│   ├── actividad/           # Módulo de actividades
+│   ├── convocatoria/         # Módulo de convocatorias
+│   ├── inscripciones/        # Módulo de inscripciones
+│   ├── persona/              # Módulo de personas
+│   ├── sexo/                 # Módulo catálogo de sexos
+│   ├── tipo_convocatoria/    # Módulo tipos de convocatoria
+│   ├── database/
+│   │   ├── seeder.ts         # Script principal de seeders
+│   │   └── seeds/            # Definición de seeds
+│   ├── app.module.ts         # Módulo principal
+│   └── main.ts               # Punto de entrada
+├── test/                     # Tests e2e
+├── .env template             # Template de variables de entorno
+└── package.json              # Dependencias y scripts
+```
+
+### Estructura de Módulos
+
+Cada módulo sigue el patrón estándar de NestJS:
+
+```
+modulo/
+├── dto/
+│   ├── create-modulo.dto.ts
+│   └── update-modulo.dto.ts
+├── entities/
+│   └── modulo.entity.ts
+├── modulo.controller.ts
+├── modulo.service.ts
+└── modulo.module.ts
+```
+
+## API Endpoints
+
+La API está completamente documentada con Swagger. Una vez que la aplicación esté en ejecución, accede a:
+
+```
+http://localhost:3000/api/docs
+```
+
+### Endpoints Principales
+
+#### Personas
+- `GET /persona` - Listar todas las personas
+- `GET /persona/:id` - Obtener una persona por ID
+- `POST /persona` - Crear nueva persona
+- `PATCH /persona/:id` - Actualizar persona
+- `DELETE /persona/:id` - Eliminar persona
+
+#### Convocatorias
+- `GET /convocatoria` - Listar convocatorias
+- `GET /convocatoria/:id` - Obtener convocatoria por ID
+- `POST /convocatoria` - Crear convocatoria
+- `PATCH /convocatoria/:id` - Actualizar convocatoria
+- `DELETE /convocatoria/:id` - Eliminar convocatoria
+
+#### Inscripciones
+- `GET /inscripciones` - Listar inscripciones
+- `GET /inscripciones/:id` - Obtener inscripción por ID
+- `POST /inscripciones` - Crear inscripción
+- `PATCH /inscripciones/:id` - Actualizar inscripción
+- `DELETE /inscripciones/:id` - Eliminar inscripción
+
+#### Catálogos
+- `GET /sexo` - Catálogo de sexos
+- `GET /actividad` - Catálogo de actividades
+- `GET /tipo` - Tipos de convocatoria
+
+## Modelo de Datos
+
+### Entidad Persona
+
+```typescript
+{
+  id_persona: number;
+  email: string;              // Único
+  nombre: string;
+  apellido: string;
+  password: string;           // Encriptado
+  dni: number;                // Único
+  cuil_cuit: string;
+  rol_id: number;
+  es_admin: boolean;
+  area_id: number;
+  sexo_id: number;
+  fecha_nacimiento: Date;
+  direccion: string;
+  localidad: string;
+  provincia: string;
+  telefono: string;
+  tipo_persona: 'humana' | 'juridica';
+  nombre_razon_social: string;
+  actividad_id: number;
+  created_at: Date;
+  updated_at: Date;
+}
+```
+
+### Entidad Convocatoria
+
+```typescript
+{
+  id_convocatoria: number;
+  convocatoria: string;
+  tipo_id: number;
+  descripcion: string;
+  reglamento: string;
+  fecha: Date;
+  ubicacion: string;
+  referente: string;
+  tel_referente: string;
+  created_at: Date;
+  updated_at: Date;
+}
+```
+
+### Entidad Inscripciones
+
+```typescript
+{
+  id_inscripcion: number;
+  persona_id: number;
+  convocatoria_id: number;
+  estado: 'activo' | 'pendiente' | 'inactivo';
+  fecha_inscripcion: Date;
+  updated_at: Date;
+}
+```
+
+## Relaciones entre Entidades
+
+```
+Persona ──┬─── ManyToOne ───> Sexo
+          ├─── ManyToOne ───> Actividad
+          └─── OneToMany ──-> Inscripciones
+
+Convocatoria ──┬─── ManyToOne ───> Tipo
+               └─── OneToMany ──-> Inscripciones
+
+Inscripciones ──┬─── ManyToOne ───> Persona
+                └─── ManyToOne ───> Convocatoria
+```
+
+## Validaciones
+
+El sistema implementa validaciones automáticas usando class-validator:
+
+- **Email**: Formato válido y único
+- **DNI**: Único en el sistema
+- **Passwords**: Encriptados con bcrypt
+- **Campos requeridos**: Validación automática
+- **Tipos de datos**: Validación estricta de tipos
+- **Enums**: Validación de valores permitidos
+
+## Seeders
+
+El proyecto incluye un sistema de seeders para poblar la base de datos con datos iniciales:
+
+```bash
+# Desarrollo
+npm run seed
+
+# Producción
+npm run seed:prod
+```
+
+Los seeders crean datos para:
+- Catálogo de sexos
+- Catálogo de actividades
+- Tipos de convocatoria
+- Datos de ejemplo (opcional)
 
 ## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### Render.com
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+1. **Crear servicio PostgreSQL en Render**
+2. **Configurar variables de entorno** en el dashboard de Render
+3. **Configurar el servicio web**:
+   - Build Command: `npm install && npm run build`
+   - Start Command: `npm run start:prod`
+4. **Ejecutar seeders** (opcional):
+   ```bash
+   npm run seed:prod
+   ```
+
+### Variables de Entorno en Producción
+
+Asegúrate de configurar:
+- `NODE_ENV=production`
+- `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` (de Render PostgreSQL)
+- `PORT` (automático en Render)
+
+## Seguridad
+
+- ✅ Passwords encriptados con bcrypt
+- ✅ Validación de datos en DTOs
+- ✅ Whitelist de propiedades en DTOs
+- ✅ SSL habilitado en producción
+- ✅ CORS configurado
+- ✅ Variables de entorno protegidas
+
+## Testing
+
+El proyecto incluye configuración para:
+
+- **Unit Tests**: Tests unitarios con Jest
+- **E2E Tests**: Tests end-to-end
+- **Coverage**: Reporte de cobertura de código
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+# Ejecutar todos los tests
+npm test
+
+# Ver cobertura
+npm run test:cov
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Troubleshooting
 
-## Resources
+### Error de conexión a base de datos
 
-Check out a few resources that may come in handy when working with NestJS:
+```bash
+# Verificar que PostgreSQL esté corriendo
+sudo systemctl status postgresql
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+# Verificar variables de entorno
+echo $DB_HOST $DB_PORT $DB_NAME
+```
 
-## Support
+### Puerto ya en uso
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+# Cambiar el puerto en .env
+PORT=3001
+```
 
-## Stay in touch
+### Error en seeders
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+# Asegurarse de que la base de datos existe
+npm run start:dev  # Esto creará las tablas
+npm run seed       # Luego ejecutar seeders
+```
 
-## License
+## Documentación Adicional
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- [NestJS Documentation](https://docs.nestjs.com)
+- [TypeORM Documentation](https://typeorm.io)
+- [Swagger Documentation](https://swagger.io/docs/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+
+## Contribuir
+
+1. Fork el proyecto
+2. Crear una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abrir un Pull Request
+
+## Autor
+
+Fernando - [GitHub](https://github.com/tu-usuario)
+
+## Licencia
+
+Este proyecto es privado y no tiene licencia de código abierto.
+
+---
+
+**Nota**: Este proyecto fue desarrollado como parte de un curso de desarrollo backend con NestJS.
