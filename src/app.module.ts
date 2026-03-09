@@ -7,6 +7,7 @@ import { ActividadModule } from './actividad/actividad.module';
 import { ConvocatoriaModule } from './convocatoria/convocatoria.module';
 import { TipoModule } from './tipo_convocatoria/tipo/tipo.module';
 import { InscripcionesModule } from './inscripciones/inscripciones.module';
+import { HealthModule } from './health/health.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { InscripcionesModule } from './inscripciones/inscripciones.module';
     ConvocatoriaModule,
     TipoModule,
     InscripcionesModule,
+    HealthModule,
     // Other modules can be imported here
   ],
   controllers: [],
